@@ -1,6 +1,7 @@
 name: check-does-build
 
 on: [ workflow_dispatch ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,3 +31,9 @@ jobs:
 
       - name: Gradle build
         run: ./gradlew -I init.gradle build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-libs
+          path: build/libs/*.jar
